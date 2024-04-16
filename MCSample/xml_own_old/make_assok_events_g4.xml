@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+<!DOCTYPE project [
+<!ENTITY release "v08_00_00_32">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "taniuchi">
+<!ENTITY name "make_assok_events_numi_fhc_run1_detvar_g4">
+
+<!-- Production xml for generating overlay with hyperon generator-->
+
+
+]>
+
+<job>
+
+<project name="&name;">
+
+  <!-- Project size -->
+  <numevents>-1</numevents>
+
+  <!-- Operating System -->
+  <os>SL7</os>
+
+  <!-- Batch resources -->
+  <resource>DEDICATED,OPPORTUNISTIC</resource>
+
+  <!-- Larsoft information -->
+  <larsoft>
+    <tag>&release;</tag>
+    <qual>e17:prof</qual>
+    <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonCode6.tar</local>
+  </larsoft>
+
+  <version>prod_&release;</version>
+  <check>1</check>
+  <copy>1</copy>
+  
+  <!-- Project stages -->
+  <stage name="assok_g4">
+    <inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>
+    <initsource>/uboone/app/users/taniuchi/v08_00_00_32_tmp/test/init_gen_numi_fhc_kaonfilter_resample_20Jun2.sh</initsource>
+  <!--<initsource>init_gen_numi_fhc_hyperonfilter_resample.sh</initsource>-->
+  <!--<fcl>overlay_gen_SimInfoMixer_NoFilter.fcl</fcl>-->
+  <fcl>standard_overlay_gen_SimInfoMixer_prod.fcl</fcl>
+  <fcl>wirecell_g4_uboone.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/MCC9/&name;/kaon_sample/detvar_g4</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/MCC9/&name;/kaon_sample/detvar_g4</logdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/MCC9/&name;/work/kaon_sample/detvar_g4</workdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/book/MCC9/&name;/kaon_sample/detvar_g4</bookdir>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>2000</numjobs> <!--200  -->
+    <datatier>generated</datatier>
+    <memory>3500</memory>
+    <schema>gsiftp</schema>
+    <datafiletypes>root</datafiletypes>
+    <disk>35GB</disk>
+    <jobsub>
+    --expected-lifetime=12h -e IFDH_CP_UNLINK_ON_ERROR=1
+    -f /pnfs/uboone/scratch/users/taniuchi/v08_00_00_32/make_kaon_events_numi_fhc_run1_assok_overlay_resubmit_21Nov/full_overlay/gen/bookdir/gen_kaons.list
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=short</jobsub_start>
+  </stage>
+ 
+ 
+  <!-- file type -->
+  <filetype>&file_type;</filetype>
+
+  <!-- run type -->
+  <runtype>&run_type;</runtype>
+
+</project>
+
+
+</job>

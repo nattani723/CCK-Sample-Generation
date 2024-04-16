@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+<!DOCTYPE project [
+<!ENTITY release "v08_00_00_32">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "taniuchi">
+<!ENTITY name "make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV2">
+
+<!-- Production xml for generating overlay with neutron generator-->
+
+
+]>
+
+<job>
+
+<project name="&name;">
+
+  <!-- Project size -->
+  <numevents>-1</numevents>
+
+  <!-- Operating System -->
+  <os>SL7</os>
+
+  <!-- Batch resources -->
+  <resource>DEDICATED,OPPORTUNISTIC</resource>
+
+  <!-- Larsoft information -->
+  <larsoft>
+    <tag>&release;</tag>
+    <qual>e17:prof</qual>
+    <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonCode6.tar</local>
+  </larsoft>
+
+  <version>prod_&release;</version>
+  <check>1</check>
+  <copy>1</copy>
+
+  <!-- Project stages -->
+  <stage name="reco1">
+    <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_singlek_g4_g4</inputdef><!--after g4 process-->
+    <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl>
+    <fcl>standard_overlay_numi_uboone.fcl</fcl>
+    <fcl>reco_uboone_mcc9_8_driver_overlay_stage1a.fcl</fcl>
+    <fcl>reco_uboone_mcc9_8_driver_overlay_stage1b.fcl</fcl>
+    <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage1c.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/MCC9/&name;/out/kaon_sample/detvar_reco1</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/MCC9/&name;/log/kaon_sample/detvar_reco1</logdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/MCC9/&name;/work/kaon_sample/detvar_reco1</workdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/MCC9/&name;/book/kaon_sample/detvar_reco1</bookdir>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>3254</numjobs> <!--3254/3258  -->
+    <datatier>reconstructed</datatier>
+    <memory>4000</memory>
+    <schema>gsiftp</schema>
+    <datafiletypes>root</datafiletypes>
+    <disk>40GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=short</jobsub_start>
+  </stage>
+
+ 
+  <!-- file type -->
+  <filetype>&file_type;</filetype>
+
+  <!-- run type -->
+  <runtype>&run_type;</runtype>
+
+</project>
+
+
+</job>

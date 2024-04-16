@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+<!DOCTYPE project [
+<!ENTITY release "v08_00_00_32">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "taniuchi">
+<!ENTITY name "make_singlek_events_numi_fhc_run1_detvar_g4_reco1_reco2_2">
+
+<!-- Production xml for generating overlay with neutron generator-->
+
+
+]>
+
+<job>
+
+<project name="&name;">
+
+  <!-- Project size -->
+  <numevents>-1</numevents>
+
+  <!-- Operating System -->
+  <os>SL7</os>
+
+  <!-- Batch resources -->
+  <resource>DEDICATED,OPPORTUNISTIC</resource>
+
+  <!-- Larsoft information -->
+  <larsoft>
+    <tag>&release;</tag>
+    <qual>e17:prof</qual>
+    <!--<local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonCode6.tar</local>-->
+    <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/CCKScan2.tar</local>
+    <!--<local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonDervar_51.tar</local>-->
+  </larsoft>
+
+  <version>prod_&release;</version>
+  <check>1</check>
+  <copy>1</copy>
+
+  <!-- Project stages -->
+  <stage name="reco2_CV">
+  <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV2_reco1_reco1</inputdef>
+  <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+  <!--<fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
+  <fcl>/cvmfs/uboone.opensciencegrid.org/products/uboonecode/v08_00_00_51/job/reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_CV</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_CV</logdir>c
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_CV</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_CV</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>3232</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>4000</memory>
+    <disk>40GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+ 
+  <stage name="reco2_SCE">
+  <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_altdetsim2_reco1_reco1_SCE_altdetsimg4</inputdef>
+  <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+  <!--<fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
+  <fcl>/cvmfs/uboone.opensciencegrid.org/products/uboonecode/v08_00_00_51/job/reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_SCE</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_SCE</logdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_SCE</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_SCE</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>3220</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>4000</memory>
+    <disk>40GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+
+  <stage name="reco2_Recomb">
+  <!--<inputdef>cthorpe_make_neutron_events_numi_rhc_run3b_detvar_CV_reco1_Recomb2_reco1</inputdef>-->
+  <!--<inputlist>/pnfs/uboone/scratch/users/taniuchi/MCC9/make_singlek_events_numi_fhc_run1_detvar_g4_altdetsim/book/kaon_sample/detvar_reco1/files.list</inputlist>-->
+  <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_altdetsim2_altdetsim_recomb_altdetsimg4</inputdef>
+  <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+  <!--<fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
+  <fcl>/cvmfs/uboone.opensciencegrid.org/products/uboonecode/v08_00_00_51/job/reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_Recomb</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_Recomb</logdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_Recomb</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_Recomb</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>3220</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>4000</memory>
+    <disk>40GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+
+
+  <stage name="reco2_LYDown">
+    <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV2_reco1_reco1</inputdef>
+    <fcl>wirecell_reg4_LY_suppression75.fcl</fcl>
+    <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+    <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+    <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+    <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
+    <fcl>/cvmfs/uboone.opensciencegrid.org/products/uboonecode/v08_00_00_51/job/reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_LYDown</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_LYDown</logdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_LYDown</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_LYDown</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>3232</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>4000</memory>
+    <disk>40GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+
+  <stage name="reco2_LYRayleigh">
+    <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV2_reco1_reco1</inputdef>
+  <fcl>wirecell_reg4_LY_reyliegh.fcl</fcl>
+  <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
+  <fcl>/cvmfs/uboone.opensciencegrid.org/products/uboonecode/v08_00_00_51/job/reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_LYRayleigh</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_LYRayleigh</logdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_LYRayleigh</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_LYRayleigh</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>3232</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>4000</memory>
+    <disk>40GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+
+  <stage name="reco2_LYAttenuation">
+    <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV2_reco1_reco1</inputdef>
+  <fcl>wirecell_reg4_LY_suppression75attenuation8m.fcl</fcl>
+  <fcl>wirecell_detsim_optical_overlay_lyattenuation_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
+  <fcl>/cvmfs/uboone.opensciencegrid.org/products/uboonecode/v08_00_00_51/job/reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_LYAttenuation</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_LYAttenuation</logdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_LYAttenuation</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_LYAttenuation</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>3232</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>4000</memory>
+    <disk>40GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+  
+  <stage name="reco2_WireModX">
+    <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV2_reco1_reco1</inputdef>
+    <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_ScaleX_stage1a_run1.fcl</fcl> 
+  <!--<fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_ScaleX_stage1a_run3.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_wiremod_stage1b.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage1c.fcl</fcl>
+  <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+  <!--<fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl> 
+  <!--<fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>-->
+  <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_WireModX</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_WireModX</logdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_WireModX</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_WireModX</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>1619</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>3500</memory>
+    <disk>35GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+
+
+  <stage name="reco2_WireModYZ">
+  <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV_reco1_reco1</inputdef>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_ScaleYZ_stage1a_run1.fcl</fcl>
+  <!--<fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_ScaleYZ_stage1a_run3.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_wiremod_stage1b.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage1c.fcl</fcl>
+  <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+  <!--<fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl> 
+  <!--<fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>-->
+  <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_WireModYZ</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_WireModYZ</logdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_WireModYZ</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_WireModYZ</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>1619</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>3500</memory>
+    <disk>35GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+
+
+  <stage name="reco2_WireModThetaXZ">
+    <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV_reco1_reco1</inputdef>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_ScaleAngleXZ_stage1a_run1.fcl</fcl> 
+  <!--<fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_ScaleAngleXZ_stage1a_run3.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_wiremod_stage1b.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage1c.fcl</fcl>
+  <!--<fcl>crt_merge_extra_v06_26_01_13.fcl</fcl>-->
+  <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl> 
+  <!--<fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl>
+  <!--<fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>-->
+  <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_WireModThetaXZ</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_WireModThetaXZ</logdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_WireModThetaXZ</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_WireModThetaXZ</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>1619</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>3500</memory>
+    <disk>35GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+
+  <stage name="reco2_WireModThetaYZ">
+  <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV_reco1_reco1</inputdef>
+  <!--<startscript>condor_start_project_crt_merge_v06_26_01_13.sh</startscript>-->
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_ScaleAngleYZ_stage1a_run1_with_sigma_splines.fcl</fcl> 
+  <!--<fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_ScaleAngleYZ_stage1a_run3_with_sigma_splines.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_wiremod_stage1b.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage1c.fcl</fcl>
+  <!--<fcl>crt_merge_extra_v06_26_01_13.fcl</fcl>-->
+  <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+  <!--<fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>-->
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl>
+  <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl> 
+  <!--<fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>-->
+    <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_WireModThetaYZ</outdir>
+    <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_WireModThetaYZ</logdir>
+    <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_WireModThetaYZ</bookdir>
+    <workdir>/pnfs/uboone/resilient/users/&user;/&release;/&name;/work/run1_WireModThetaYZ</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>1619</numjobs>
+    <datatier>reconstructed</datatier>
+    <memory>3500</memory>
+    <disk>35GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    </jobsub>
+    <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+  </stage>
+
+
+  <!-- file type -->
+  <filetype>&file_type;</filetype>
+
+
+  <!-- run type -->
+  <runtype>&run_type;</runtype>
+
+</project>
+
+
+</job>

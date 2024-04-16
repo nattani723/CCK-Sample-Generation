@@ -1,0 +1,27 @@
+samweb locate-file -e uboone #!/bin/bash
+
+#defname=defname:data_bnb_mcc9.1_v08_00_00_25_reco2_C1_nucc_reco2
+#defname=defname:prodgenie_bnb_nu_uboone_overlay_mcc9.1_v08_00_00_26_filter_run1_reco2_reco2
+#defname=defname:jairorod_ccsinglekaon_sample_170k_reco2_evtw_AUG21
+
+#defname=defname:prodgenie_numi_uboone_overlay_fhc_mcc9_run1_v28_v2_sample0
+#defname=defname:taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_26May2023_gen_assok
+defname=defname:taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_deftest_gen_assok
+#taniuchi_make_kaon_events_numi_fhc_run1_singlek_overlay_10May2023_gen_singlek
+#taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_10May2023_gen_assok
+#taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_30Jan2023_gen_assok
+#defname=defname:taniuchi_make_kaon_events_numi_fhc_run1_singlek_overlay_30Jan2023_gen_singlek
+#taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_reco2_reco2_CV_reco2
+
+for file in $(samweb list-files -e uboone ${defname})
+do
+  dir=$(samweb locate-file -e uboone ${file})
+  if [[ ${dir} == "dcache:"* ]]; then
+    echo ${dir#"dcache:"}/$file >> files.list 
+  fi
+  if [[ ${dir} == "enstore:"* ]]; then
+    dir1=${dir#"enstore:"}
+    dir2=${dir1%(*}
+    echo ${dir2}/$file >> files.list 
+  fi
+done

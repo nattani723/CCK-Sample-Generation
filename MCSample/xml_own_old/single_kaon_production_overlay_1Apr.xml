@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+
+<!DOCTYPE project [
+<!ENTITY release "v08_00_00_32">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "taniuchi">
+<!ENTITY name "make_kaon_events_numi_fhc_run1_singlek_overlay_30Jan2023_test">
+<!ENTITY njobs "50">
+<!ENTITY folder "full_overlay">
+<!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
+<!ENTITY app "/uboone/app/users/taniuchi"> 
+<!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
+<!ENTITY data "/uboone/data/users/taniuchi">
+]>
+
+<job>
+  
+  <project name="&name;">
+    
+    <!-- Project size -->
+    <numevents>110000</numevents>
+    
+    <!-- Operating System -->
+    <os>SL7</os>
+    
+    <!-- Group -->
+    <group>uboone</group>
+    
+    <!-- Operating System -->
+    <os>SL7</os>
+
+    <!-- Batch resources -->
+    <resource>DEDICATED,OPPORTUNISTIC,OFFSITE</resource>
+    
+    <!-- Larsoft information -->
+    <larsoft>
+      <tag>&release;</tag>
+      <qual>e17:prof</qual>
+      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonCode6_lite.tar</local> 
+      <!--<local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonCode6.tar</local>-->
+    </larsoft>
+    
+    <version>prod_&release;</version>  
+    <check>0</check>
+    <copy>0</copy>
+    
+    <inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>
+    
+    <stage name="gen">
+      <fcl>/uboone/app/users/taniuchi/KaonProduction/MCSample/xml_own/prodgenie_numi_cck_asso_fhc.fcl</fcl>
+      <!--<initsource>/uboone/app/users/taniuchi/KaonAna/singlekaongenie/init_gen_CCSingleKplus.sh</initsource>-->
+      
+      <!--<outdir>&scratch;/&release;/&name;/&folder;/gen/outdir</outdir>-->
+      <outdir>&scratch;/&release;/&name;/&folder;/gen/outdir</outdir>
+      <logdir>&scratch;/&release;/&name;/&folder;/gen/logdir</logdir>
+      <workdir>&scratch;/&release;/&name;/&folder;/gen/workdir</workdir>
+      <bookdir>&scratch;/&release;/&name;/&folder;/gen/bookdir</bookdir>
+
+      <output>&name;_${PROCESS}_%tc_g4.root</output>
+      <datatier>gen</datatier>
+      <numjobs>80</numjobs>
+      <maxfilesperjob>1</maxfilesperjob>
+      <memory>2000</memory>
+      <!--<memory>4000</memory>-->
+      <disk>10GB</disk>
+      <!--<disk>100GB</disk>-->
+      <jobsub>--expected-lifetime=24h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
+      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      
+    </stage>
+    
+
+    
+    <stage name="g4">
+      <inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>
+      <initsource>/uboone/app/users/taniuchi/KaonProduction/MCSample/xml_own/init_gen_numi_fhc_kaonfilter_resample_singlek.sh</initsource>
+      <fcl>standard_overlay_gen_SimInfoMixer_prod.fcl</fcl>
+      <fcl>wirecell_g4_uboone.fcl</fcl>
+      <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl> 
+      <fcl>standard_overlay_numi_uboone.fcl</fcl>
+
+      <outdir>&scratch;/&release;/&name;/&folder;/g4/outdir</outdir>
+      <logdir>&scratch;/&release;/&name;/&folder;/g4/logdir</logdir>
+      <workdir>&scratch;/&release;/&name;/&folder;/g4/workdir</workdir>
+      <bookdir>&scratch;/&release;/&name;/&folder;/g4/bookdir</bookdir>
+      
+      <output>&name;_${PROCESS}_%tc_g4.root</output>
+      <datatier>g4</datatier>
+      <numjobs>80</numjobs>
+      <maxfilesperjob>1</maxfilesperjob>
+      <memory>4000</memory>
+      <disk>10GB</disk>
+      <jobsub>
+	--expected-lifetime=4h -e IFDH_CP_UNLINK_ON_ERROR=1 
+	-f /pnfs/uboone/persistent/users/taniuchi/kaongen/gen_singlek.list
+      </jobsub>
+      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      
+    </stage>
+    
+    
+    
+    <stage name="detsim">
+      
+      <!--<inputlist>&scratch;/&release;/&name;/&folder;/g4/bookdir/files.list</inputlist>-->
+      <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_30Jan2023_test_g4_assok</inputdef>
+      <!--<inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_30Jan2023_2_g4_assok</inputdef>-->
+      <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl> 
+      <fcl>standard_overlay_numi_uboone.fcl</fcl>
+      
+      <outdir>&scratch;/&release;/&name;/&folder;/detsim/outdir</outdir>
+      <logdir>&scratch;/&release;/&name;/&folder;/detsim/logdir</logdir>
+      <workdir>&scratch;/&release;/&name;/&folder;/detsim/workdir</workdir>
+      <bookdir>&scratch;/&release;/&name;/&folder;/detsim/bookdir</bookdir>
+      <output>&name;_${PROCESS}_%tc_detsim.root</output>
+      <datatier>detsim</datatier>
+      <numjobs>&njobs;</numjobs>
+      <maxfilesperjob>1</maxfilesperjob>
+      <memory>4000</memory>
+      <disk>100GB</disk>
+      <jobsub>--expected-lifetime=24h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
+      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      
+    </stage>
+
+
+
+    <stage name="reco1">
+      <!--<inputdef>taniuchi_make_kaon_events_numi_fhc_run1_singlek_overlay_30Jan2023_test_g4_singlek</inputdef>-->
+      <inputlist>&scratch;/&release;/&name;/&folder;/g4/bookdir/files.list</inputlist>
+      <!--<inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_30Jan2023_test_g4_assok</inputdef>-->
+      <fcl>reco_uboone_mcc9_8_driver_overlay_stage1a.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_overlay_stage1b.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage1c.fcl</fcl>
+      
+      <outdir>&scratch;/&release;/&name;/&folder;/reco1/outdir</outdir>
+      <logdir>&scratch;/&release;/&name;/&folder;/reco1/logdir</logdir>
+      <workdir>&scratch;/&release;/&name;/&folder;/reco1/workdir</workdir>
+      <bookdir>&scratch;/&release;/&name;/&folder;/reco1/bookdir</bookdir>
+      <output>&name;_${PROCESS}_%tc_reco1.root</output>
+      <datatier>reconstructed</datatier>
+      <numjobs>&njobs;</numjobs>
+      <maxfilesperjob>1</maxfilesperjob>
+      <memory>4000</memory>
+      <disk>100GB</disk>
+      <jobsub>--expected-lifetime=24h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
+      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      
+    </stage>
+
+
+    <stage name="reco2">
+      
+      <inputlist>&scratch;/&release;/&name;/&folder;/reco1/bookdir/files.list</inputlist>
+      <!--<inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_30Jan2023_test_reco1_assok</inputdef>-->
+      <!--<inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_30Jan2023_test_g4_assok</inputdef>-->
+      <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+      <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
+      <fcl>/cvmfs/uboone.opensciencegrid.org/products/uboonecode/v08_00_00_51/job/reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
+      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>-->
+      
+      <outdir>&scratch;/&release;/&name;/&folder;/reco2/outdir</outdir>
+      <logdir>&scratch;/&release;/&name;/&folder;/reco2/logdir</logdir>
+      <workdir>&scratch;/&release;/&name;/&folder;/reco2/workdir</workdir>
+      <bookdir>&scratch;/&release;/&name;/&folder;/reco2/bookdir</bookdir>
+      <output>&name;_${PROCESS}_%tc_reco2.root</output>
+      <datatier>reconstructed</datatier>
+      <numjobs>&njobs;</numjobs>
+      <maxfilesperjob>1</maxfilesperjob>
+      <memory>4000</memory>
+      <disk>50GB</disk>
+      <jobsub>--expected-lifetime=24h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
+      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      
+    </stage>
+
+    <!-- file type -->
+    <filetype>&file_type;</filetype>
+    
+    <!-- run type -->
+    <runtype>&run_type;</runtype>
+    
+  </project>
+    
+
+</job>
+
