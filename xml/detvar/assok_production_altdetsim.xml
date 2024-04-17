@@ -44,15 +44,15 @@
     <copy>1</copy>
 
 
-    <stage name="altdetsim_sce">
+    <stage name="altdetsim_SCE">
       
       <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec_g4_assok</inputdef> <!--need g4 input-->
       <fcl>wirecell_reg4_SCE_DataDrivenVar.fcl</fcl>
       
-      <outdir>&scratch;/&release2;/&name;/altdetsim_sce/out</outdir>
-      <logdir>&scratch;/&release2;/&name;/altdetsim_sce/log</logdir>
-      <workdir>&resilient;/&release2;/&name;/altdetsim_sce/work</workdir>
-      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/altdetsim_sce</bookdir>
+      <outdir>&scratch;/&release2;/&name;/altdetsim_SCE/out</outdir>
+      <logdir>&scratch;/&release2;/&name;/altdetsim_SCE/log</logdir>
+      <workdir>&resilient;/&release2;/&name;/altdetsim_SCE/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/altdetsim_SCE</bookdir>
       <datatier>simulated</datatier>
       <numjobs>2000</numjobs>
       <maxfilesperjob>1</maxfilesperjob>
@@ -64,15 +64,15 @@
     </stage>
 
 
-    <stage name="altdetsim_recomb">
+    <stage name="altdetsim_Recomb">
       
       <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec_g4_assok</inputdef>
       <fcl>wirecell_reg4_recombination_2.fcl</fcl>
       
-      <outdir>&scratch;/&release2;/&name;/altdetsim_recomb/out</outdir>
-      <logdir>&scratch;/&release2;/&name;/altdetsim_recomb/log</logdir>
-      <workdir>&resilient;/&release2;/&name;/altdetsim_recomb/work</workdir>
-      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/altdetsim_recomb</bookdir>
+      <outdir>&scratch;/&release2;/&name;/altdetsim_Recomb/out</outdir>
+      <logdir>&scratch;/&release2;/&name;/altdetsim_Recomb/log</logdir>
+      <workdir>&resilient;/&release2;/&name;/altdetsim_Recomb/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/altdetsim_Recomb</bookdir>
       <datatier>simulated</datatier>
       <numjobs>3000</numjobs>
       <maxfilesperjob>1</maxfilesperjob>

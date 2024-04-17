@@ -343,6 +343,37 @@
       <jobsub_start>  --expected-lifetime=48h</jobsub_start>
     </stage>
 
+    <stage name="reco2_WireModdEdX">
+      <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_reco1_CV_reco1_reco1</inputdef>
+      <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_ScaledEdX_stage1a_run1.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_overlay_wiremod_stage1b.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage1c.fcl</fcl>
+      <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+      <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl>
+      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl> -->
+
+      <outdir>&scratch;/&release;/&name;/reco2_WireModdEdX/out</outdir>
+      <logdir>&scratch;/&release;/&name;/reco2_WireModdEdX/log</logdir>
+      <workdir>&resilient;/&release;/&name;/reco2_WireModdEdX/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/reco2_WireModdEdX</bookdir>
+      <dropboxwait>0.1</dropboxwait>
+      <datafiletypes>root</datafiletypes>
+      <prestart>1</prestart>
+      <filelistdef>1</filelistdef>
+      <prestagefraction>0.95</prestagefraction>
+      <maxfilesperjob>1</maxfilesperjob>
+      <numjobs>2000</numjobs>
+      <datatier>reconstructed</datatier>
+      <memory>4000</memory>
+      <disk>40GB</disk>
+      <jobsub>
+	--expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+      </jobsub>
+      <jobsub_start>  --expected-lifetime=48h</jobsub_start>
+    </stage>
+
     <!-- file type -->
     <filetype>&file_type;</filetype>
     

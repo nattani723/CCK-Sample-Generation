@@ -75,7 +75,7 @@
     </stage>
 
 
-    <stage name="reco1_sce">
+    <stage name="reco1_SCE">
     
       <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec_detsim_sce_assok</inputdef>
       <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl> 
@@ -84,10 +84,10 @@
       <fcl>reco_uboone_mcc9_8_driver_overlay_stage1b.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage1c.fcl</fcl>
       
-      <outdir>&scratch;/&release;/&name;/reco1_sce/out</outdir>
-      <logdir>&scratch;/&release;/&name;/reco1_sce/log</logdir>
-      <workdir>&resilient;/&release;/&name;/reco1_sce/work</workdir>
-      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/reco1_sce</bookdir>
+      <outdir>&scratch;/&release;/&name;/reco1_SCE/out</outdir>
+      <logdir>&scratch;/&release;/&name;/reco1_SCE/log</logdir>
+      <workdir>&resilient;/&release;/&name;/reco1_SCE/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/reco1_SCE</bookdir>
       <datatier>reconstructed-2d</datatier>
       <numjobs>2000</numjobs>
       <maxfilesperjob>1</maxfilesperjob>
@@ -99,7 +99,7 @@
     </stage>
 
 
-    <stage name="reco1_recomb">
+    <stage name="reco1_Recomb">
     
       <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_20dec_detsim_detsim</inputdef>
       <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl> 
@@ -108,10 +108,10 @@
       <fcl>reco_uboone_mcc9_8_driver_overlay_stage1b.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage1c.fcl</fcl>
       
-      <outdir>&scratch;/&release;/&name;/reco1_recomb/out</outdir>
-      <logdir>&scratch;/&release;/&name;/reco1_recomb/log</logdir>
-      <workdir>&resilient;/&release;/&name;/reco1_recomb/work</workdir>
-      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/reco1_recomb</bookdir>
+      <outdir>&scratch;/&release;/&name;/reco1_Recomb/out</outdir>
+      <logdir>&scratch;/&release;/&name;/reco1_Recomb/log</logdir>
+      <workdir>&resilient;/&release;/&name;/reco1_Recomb/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/reco1_Recomb</bookdir>
       <datatier>reconstructed-2d</datatier>
       <numjobs>2000</numjobs>
       <maxfilesperjob>1</maxfilesperjob>
