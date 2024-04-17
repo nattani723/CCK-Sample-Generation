@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+
+<!DOCTYPE project [
+<!ENTITY release "v08_00_00_51">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "taniuchi">
+<!ENTITY name "assok_production_numi_fhc_run1_gen_test">
+<!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
+<!ENTITY app "/exp/uboone/app/users/taniuchi"> 
+<!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
+<!ENTITY resilient "/pnfs/uboone/resilient/users/taniuchi"> 
+<!ENTITY data "/exp/uboone/data/users/taniuchi">
+]>
+
+
+<job>
+  
+  <project name="&name;">
+    
+    <!-- Project size -->
+    <numevents>100000</numevents>
+    <!--<numevents>10000000</numevents>-->
+    
+    <!-- Operating System -->
+    <os>SL7</os>
+    
+    <!-- Group -->
+    <group>uboone</group>
+    
+    <!-- Batch resources -->
+    <resource>DEDICATED,OPPORTUNISTIC</resource>
+    
+    <!-- Larsoft information -->
+    <larsoft>
+      <tag>&release;</tag>
+      <qual>e17:prof</qual>
+      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/Kaon_v08_00_00_51.tar</local> 
+    </larsoft>
+   
+    <version>prod_&release;</version>
+    <check>1</check>
+    <copy>0</copy>
+
+    
+    <inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>
+    
+    <stage name="gen">
+      <fcl>/exp/uboone/app/users/taniuchi/KaonProduction/MCSample/xml/prodgenie_numi_cck_asso_fhc.fcl</fcl>
+      
+      <outdir>&scratch;/&release;/&name;/gen/out</outdir>
+      <logdir>&scratch;/&release;/&name;/gen/log</logdir>
+      <workdir>&resilient;/&release;/&name;/gen/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/gen</bookdir>
+
+      <datatier>generated</datatier>
+      <prestart>1</prestart>
+      <filelistdef>1</filelistdef>
+      <maxfilesperjob>1</maxfilesperjob>
+ 
+      <numjobs>20</numjobs>
+      <memory>4000</memory>
+      <disk>40GB</disk>
+      <jobsub>--expected-lifetime=48h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
+      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      
+    </stage>
+        
+    <!-- file type -->
+    <filetype>&file_type;</filetype>
+    
+    <!-- run type -->
+    <runtype>&run_type;</runtype>
+    
+  </project>
+    
+
+</job>
+

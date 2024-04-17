@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+
+<!DOCTYPE project [
+<!ENTITY release "v08_00_00_51">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "taniuchi">
+<!ENTITY name "assok_production_numi_fhc_run1_detvar_g4">
+<!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
+<!ENTITY app "/exp/uboone/app/users/taniuchi"> 
+<!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
+<!ENTITY resilient "/pnfs/uboone/resilient/users/taniuchi"> 
+<!ENTITY data "/exp/uboone/data/users/taniuchi">
+]>
+
+
+<job>
+  
+  <project name="&name;">
+    
+    <!-- Project size -->
+    <numevents>-1</numevents>
+    <!--<numevents>10000000</numevents>-->
+    
+    <!-- Operating System -->
+    <os>SL7</os>
+    
+    <!-- Group -->
+    <group>uboone</group>
+    
+    <!-- Batch resources -->
+    <resource>DEDICATED,OPPORTUNISTIC</resource>
+    
+    <!-- Larsoft information -->
+    <larsoft>
+      <tag>&release;</tag>
+      <qual>e17:prof</qual>
+      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/Kaon_v08_00_00_51.tar</local> 
+    </larsoft>
+   
+    <version>prod_&release;</version>
+    <check>1</check>
+    <copy>1</copy>
+
+    
+    <stage name="g4">
+      <inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>
+      <initsource>/exp/uboone/app/users/taniuchi/KaonProduction/MCSample/xml/init_gen_numi_fhc_kaonfilter_resample_assok.sh</initsource>
+      <fcl>standard_overlay_gen_SimInfoMixer_prod.fcl</fcl>
+      <outdir>&scratch;/&release;/&name;/g4/out</outdir>
+      <logdir>&scratch;/&release;/&name;/g4/log</logdir>
+      <workdir>&resilient;/&release;/&name;/g4/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/g4</bookdir>
+      
+      <datatier>simulated</datatier> <!--check data tier of siminfomixer-->
+      <numjobs>2000</numjobs>
+      <maxfilesperjob>1</maxfilesperjob>
+      <memory>4000</memory>
+      <disk>40GB</disk>
+      <jobsub>
+	--expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1 
+	-f /pnfs/uboone/persistent/users/taniuchi/kaongen/gen_assok.list
+      </jobsub>
+      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      
+    </stage>
+    
+    <!-- file type -->
+    <filetype>&file_type;</filetype>
+    
+    <!-- run type -->
+    <runtype>&run_type;</runtype>
+    
+  </project>
+    
+
+</job>
+

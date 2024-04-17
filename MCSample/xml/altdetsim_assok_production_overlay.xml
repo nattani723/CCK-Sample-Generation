@@ -5,20 +5,16 @@
 <!DOCTYPE project [
 <!ENTITY release "v08_00_00_51">
 <!ENTITY release2 "v08_00_00_13k">
-<!--<!ENTITY release "v08_00_00_32">-->
 <!ENTITY file_type "mc">
 <!ENTITY run_type "physics">
 <!ENTITY user "taniuchi">
-<!ENTITY name "make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec">
-<!ENTITY njobs "1500">
-<!ENTITY folder "full_overlay">
+<!ENTITY name "make_kaon_events_numi_fhc_run1_assok_detvar_altdetsim">
 <!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
 <!ENTITY app "/uboone/app/users/taniuchi"> 
 <!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
 <!ENTITY data "/uboone/data/users/taniuchi">
 ]>
 
-<!--<!ENTITY name "make_kaon_events_numi_fhc_run1_assok_overlay_25Apr2023">-->
 
 <job>
   
@@ -33,11 +29,8 @@
     <!-- Group -->
     <group>uboone</group>
     
-    <!-- Operating System -->
-    <os>SL7</os>
-
     <!-- Batch resources -->
-    <resource>DEDICATED,OPPORTUNISTIC,OFFSITE</resource>
+    <resource>DEDICATED,OPPORTUNISTIC</resource>
     
     <!-- Larsoft information -->
     <larsoft>
@@ -46,52 +39,47 @@
       <!--<local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/Kaon_v08_00_00_51.tar</local>--> 
     </larsoft>
    
-<version>prod_&release2;</version>
+    <version>prod_&release2;</version>
     <check>1</check>
     <copy>1</copy>
 
 
-    <stage name="detsim_sce">
+    <stage name="altdetsim_sce">
       
-      <!--<inputlist>&scratch;/&release;/&name;/&folder;/g4/bookdir/files.list</inputlist>-->
-      <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec_g4_assok</inputdef>
+      <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec_g4_assok</inputdef> <!--need g4 input-->
       <fcl>wirecell_reg4_SCE_DataDrivenVar.fcl</fcl>
-      <!--<fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl>-->
-      <!--<fcl>standard_overlay_numi_uboone.fcl</fcl>-->
       
-      <outdir>&scratch;/&release2;/&name;/&folder;/detsim/outdir</outdir>
-      <logdir>&scratch;/&release2;/&name;/&folder;/detsim/logdir</logdir>
-      <workdir>&scratch;/&release2;/&name;/&folder;/detsim/workdir</workdir>
-      <bookdir>&scratch;/&release2;/&name;/&folder;/detsim/bookdir</bookdir>
-      <output>&name;_${PROCESS}_%tc_detsim.root</output>
-      <datatier>detector-simulated</datatier>
-      <numjobs>30</numjobs>
+      <outdir>&scratch;/&release2;/&name;/altdetsim_sce/out</outdir>
+      <logdir>&scratch;/&release2;/&name;/altdetsim_sce/log</logdir>
+      <workdir>&scratch;/&release2;/&name;/altdetsim_sce/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/altdetsim_sce</bookdir>
+      <datatier>simulated</datatier>
+      <numjobs>3000</numjobs>
       <maxfilesperjob>1</maxfilesperjob>
       <memory>4000</memory>
       <disk>40GB</disk>
-      <jobsub>--expected-lifetime=12h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
-      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      <jobsub>--expected-lifetime=24h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
+      <jobsub_start>--expected-lifetime=short --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
       
     </stage>
 
 
-    <stage name="detsim_recomb">
+    <stage name="altdetsim_recomb">
       
       <!--<inputlist>&scratch;/&release;/&name;/&folder;/g4/bookdir/files.list</inputlist>-->
       <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec_g4_assok</inputdef>
       <fcl>wirecell_reg4_recombination_2.fcl</fcl>
       
-      <outdir>&scratch;/&release2;/&name;/&folder;/detsim/outdir</outdir>
-      <logdir>&scratch;/&release2;/&name;/&folder;/detsim/logdir</logdir>
-      <workdir>&scratch;/&release2;/&name;/&folder;/detsim/workdir</workdir>
-      <bookdir>&scratch;/&release2;/&name;/&folder;/detsim/bookdir</bookdir>
-      <output>&name;_${PROCESS}_%tc_detsim.root</output>
-      <datatier>detector-simulated</datatier>
-      <numjobs>300</numjobs>
+      <outdir>&scratch;/&release2;/&name;/altdetsim_recomb/out</outdir>
+      <logdir>&scratch;/&release2;/&name;/altdetsim_recomb/log</logdir>
+      <workdir>&scratch;/&release2;/&name;/altdetsim_recomb/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/altdetsim_recomb</bookdir>
+      <datatier>simulated</datatier>
+      <numjobs>3000</numjobs>
       <maxfilesperjob>1</maxfilesperjob>
       <memory>4000</memory>
       <disk>40GB</disk>
-      <jobsub>--expected-lifetime=12h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
+      <jobsub>--expected-lifetime=24h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
       <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
       
     </stage>
@@ -117,11 +105,8 @@
     <!-- Group -->
     <group>uboone</group>
     
-    <!-- Operating System -->
-    <os>SL7</os>
-
     <!-- Batch resources -->
-    <resource>DEDICATED,OPPORTUNISTIC,OFFSITE</resource>
+    <resource>DEDICATED,OPPORTUNISTIC</resource>
     
     <!-- Larsoft information -->
     <larsoft>
@@ -130,13 +115,12 @@
       <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/Kaon_v08_00_00_51.tar</local>
     </larsoft>
    
-<version>prod_&release;</version>
+    <version>prod_&release;</version>
     <check>1</check>
     <copy>1</copy>
 
     <stage name="reco1_sce">
     
-      <!--<inputlist>&scratch;/&release;/&name;/&folder;/detsim/bookdir/files.list</inputlist>-->
       <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec_detsim_sce_assok</inputdef>
       <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl> 
       <fcl>standard_overlay_numi_uboone.fcl</fcl>
@@ -144,13 +128,12 @@
       <fcl>reco_uboone_mcc9_8_driver_overlay_stage1b.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage1c.fcl</fcl>
       
-      <outdir>&scratch;/&release;/&name;/&folder;/reco1/outdir</outdir>
-      <logdir>&scratch;/&release;/&name;/&folder;/reco1/logdir</logdir>
-      <workdir>&scratch;/&release;/&name;/&folder;/reco1/workdir</workdir>
-      <bookdir>&scratch;/&release;/&name;/&folder;/reco1/bookdir</bookdir>
-      <output>&name;_${PROCESS}_%tc_reco1.root</output>
+      <outdir>&scratch;/&release;/&name;/reco1_sce/out</outdir>
+      <logdir>&scratch;/&release;/&name;/reco1_sce/log</logdir>
+      <workdir>&scratch;/&release;/&name;/reco1_sce/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/reco1_sce</bookdir>
       <datatier>reconstructed-2d</datatier>
-      <numjobs>30</numjobs>
+      <numjobs>2000</numjobs>
       <maxfilesperjob>1</maxfilesperjob>
       <memory>4000</memory>
       <disk>40GB</disk>
@@ -162,7 +145,6 @@
 
     <stage name="reco1_recomb">
     
-      <!--<inputlist>&scratch;/&release;/&name;/&folder;/detsim/bookdir/files.list</inputlist>-->
       <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_20dec_detsim_detsim</inputdef>
       <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl> 
       <fcl>standard_overlay_numi_uboone.fcl</fcl>
@@ -170,13 +152,12 @@
       <fcl>reco_uboone_mcc9_8_driver_overlay_stage1b.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage1c.fcl</fcl>
       
-      <outdir>&scratch;/&release;/&name;/&folder;/reco1/outdir</outdir>
-      <logdir>&scratch;/&release;/&name;/&folder;/reco1/logdir</logdir>
-      <workdir>&scratch;/&release;/&name;/&folder;/reco1/workdir</workdir>
-      <bookdir>&scratch;/&release;/&name;/&folder;/reco1/bookdir</bookdir>
-      <output>&name;_${PROCESS}_%tc_reco1.root</output>
+      <outdir>&scratch;/&release;/&name;/reco1_recomb/outdir</outdir>
+      <logdir>&scratch;/&release;/&name;/reco1_recomb/logdir</logdir>
+      <workdir>&scratch;/&release;/&name;/reco1_recomb/workdir</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/reco1_recomb</bookdir>
       <datatier>reconstructed-2d</datatier>
-      <numjobs>30</numjobs>
+      <numjobs>2000</numjobs>
       <maxfilesperjob>1</maxfilesperjob>
       <memory>4000</memory>
       <disk>100GB</disk>
@@ -190,11 +171,8 @@
   <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_altdetsim2_reco1_reco1_SCE_altdetsimg4</inputdef>
   <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
   <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
-  <!--<fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>-->
   <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
   <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
-  <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
-  <!--<fcl>/cvmfs/uboone.opensciencegrid.org/products/uboonecode/v08_00_00_51/job/reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>-->
     <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_SCE</outdir>
     <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_SCE</logdir>
     <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_SCE</bookdir>
@@ -216,15 +194,11 @@
   </stage>
 
   <stage name="reco2_recomb">
-  <!--<inputdef>cthorpe_make_neutron_events_numi_rhc_run3b_detvar_CV_reco1_Recomb2_reco1</inputdef>-->
-  <!--<inputlist>/pnfs/uboone/scratch/users/taniuchi/MCC9/make_singlek_events_numi_fhc_run1_detvar_g4_altdetsim/book/kaon_sample/detvar_reco1/files.list</inputlist>-->
   <inputdef>taniuchi_make_singlek_events_numi_fhc_run1_detvar_g4_altdetsim2_altdetsim_recomb_altdetsimg4</inputdef>
   <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
   <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
-  <!--<fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>-->
   <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
   <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
-  <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
     <outdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/out/run1_Recomb</outdir>
     <logdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/log/run1_Recomb</logdir>
     <bookdir>/pnfs/uboone/scratch/users/&user;/&release;/&name;/book/run1_Recomb</bookdir>

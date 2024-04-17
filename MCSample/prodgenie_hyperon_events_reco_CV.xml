@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+
+<!-- Production xml for generating overlay with hyperon generator-->
+
+<!-- Production Project -->
+<!DOCTYPE project [
+<!ENTITY release "v08_00_00_51">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "cthorpe">
+<!ENTITY name "cthorpe_make_hyperon_events_numi_rhc_run3b_pt1_TEST2">
+
+]>
+
+<job>
+
+<project name="&name;">
+
+  <!-- Project size -->
+  <numevents>-1</numevents>
+
+  <!-- Operating System -->
+  <os>SL7</os>
+
+  <!-- Batch resources -->
+  <resource>DEDICATED,OPPORTUNISTIC</resource>
+
+  <!-- Larsoft information -->
+  <larsoft>
+    <tag>&release;</tag>
+    <qual>e17:prof</qual>
+    <local>/pnfs/uboone/resilient/users/cthorpe/HyperonCode/tarballs/HyperonCode21.tar</local>
+  </larsoft>
+
+  <version>prod_&release;</version>
+  <check>1</check>
+  <copy>1</copy>
+  
+  <!-- Project stages -->
+  <stage name="hyperon_reco1">
+  <inputdef>cthorpe_prod_extunbiased_swizzle_crt_inclusive_v6_run3b_pt3</inputdef>
+  <initsource>/pnfs/uboone/resilient/users/cthorpe/HyperonCode/scripts/init_gen_hyperonfilter_resample.sh</initsource>
+  <fcl>/pnfs/uboone/resilient/users/cthorpe/HyperonCode/fhicls/overlay_gen_SimInfoMixer_NoFilter.fcl</fcl>
+   <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl>
+    <fcl>standard_overlay_numi_uboone.fcl</fcl>
+    <fcl>reco_uboone_mcc9_8_driver_overlay_stage1a.fcl</fcl>
+    <fcl>reco_uboone_mcc9_8_driver_overlay_stage1b.fcl</fcl>
+    <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage1c.fcl</fcl>
+    <outdir>/pnfs/uboone/scratch/users/cthorpe/&release;/&name;/run3b/out</outdir>
+    <logdir>/pnfs/uboone/scratch/users/cthorpe/&release;/&name;/run3b/log</logdir>
+    <workdir>/pnfs/uboone/resilient/users/cthorpe/work/&release;/&name;/run3b</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <datatier>reconstructed</datatier>
+    <datafiletypes>root</datafiletypes>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <maxfilesperjob>1</maxfilesperjob>
+    <numjobs>20</numjobs> <!--200  -->
+    <datatier>reconstructed</datatier>
+    <memory>3500</memory>
+    <disk>35GB</disk>
+    <jobsub>
+    --expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1
+    -f /pnfs/uboone/scratch/users/cthorpe/hyperon_gen/v08_00_00_51/genie_gen_hyperon_events_numi_rhc_forresample_pt1/out/gen_hyperons.list
+    </jobsub>
+    <jobsub_start>--expected-lifetime=24h</jobsub_start>
+  </stage>
+ 
+  <stage name="hyperon_reco2">
+  <inputdef>cthorpe_cthorpe_make_hyperon_events_numi_rhc_run3b_pt1_TEST_hyperon_reco1_reco1</inputdef>
+  <!-- Run 1 -->
+  <!--    <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl> -->
+  <!-- Run 3 -->
+  <fcl>crt_merge_extra_v06_26_01_13.fcl</fcl>
+  <fcl>wirecell_detsim_optical_overlay_numi_uboone.fcl</fcl>
+  <fcl>standard_overlay_notpc_numi_uboone.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
+  <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
+  <outdir>/pnfs/uboone/scratch/users/cthorpe/&release;/&name;/run3b_reco2/out</outdir>
+  <logdir>/pnfs/uboone/scratch/users/cthorpe/&release;/&name;/run3b_reco2/log</logdir>
+  <workdir>/pnfs/uboone/resilient/users/cthorpe/work/&release;/&name;/run3b_reco2</workdir>
+    <dropboxwait>0.1</dropboxwait>
+    <maxfilesperjob>1</maxfilesperjob>
+    <prestart>1</prestart>
+    <filelistdef>1</filelistdef>
+    <prestagefraction>0.95</prestagefraction>
+    <numjobs>20</numjobs> <!--3815 -->
+    <datatier>reconstructed</datatier>
+    <memory>3500</memory>
+    <disk>10GB</disk>
+    <datafiletypes>root,pndr</datafiletypes>
+    <jobsub>--expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1</jobsub>
+    <jobsub_start> --expected-lifetime=24h </jobsub_start>
+  </stage>
+
+ 
+  <!-- file type -->
+  <filetype>&file_type;</filetype>
+
+  <!-- run type -->
+  <runtype>&run_type;</runtype>
+
+</project>
+
+
+</job>

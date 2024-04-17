@@ -7,7 +7,7 @@
 <!ENTITY file_type "mc">
 <!ENTITY run_type "physics">
 <!ENTITY user "taniuchi">
-<!ENTITY name "make_kaon_events_numi_fhc_run1_assok_CV_test">
+<!ENTITY name "assok_production_numi_fhc_run1_main_reco">
 <!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
 <!ENTITY app "/exp/uboone/app/users/taniuchi"> 
 <!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
@@ -45,31 +45,6 @@
     <copy>1</copy>
 
     
-    <inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>
-    
-    <stage name="gen">
-      <fcl>/exp/uboone/app/users/taniuchi/KaonProduction/MCSample/xml/prodgenie_numi_cck_asso_fhc.fcl</fcl>
-      
-      <outdir>&scratch;/&release;/&name;/gen/out</outdir>
-      <logdir>&scratch;/&release;/&name;/gen/log</logdir>
-      <workdir>&resilient;/&release;/&name;/gen/work</workdir>
-      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/gen</bookdir>
-
-      <datatier>generated</datatier>
-      <prestart>1</prestart>
-      <filelistdef>1</filelistdef>
-      <maxfilesperjob>1</maxfilesperjob>
- 
-      <numjobs>2000</numjobs>
-      <memory>4000</memory>
-      <disk>40GB</disk>
-      <jobsub>--expected-lifetime=48h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
-      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
-      
-    </stage>
-    
-
-    
     <stage name="g4">
       <inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>
       <initsource>/exp/uboone/app/users/taniuchi/KaonProduction/MCSample/xml/init_gen_numi_fhc_kaonfilter_resample_assok.sh</initsource>
@@ -92,34 +67,12 @@
       
     </stage>
     
-    
-    
-    <stage name="detsim">
-      
-      <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_31dec_g4_assok</inputdef> <!--check inputdef-->
-      <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl> 
-      <fcl>standard_overlay_numi_uboone.fcl</fcl>
-      
-      <outdir>&scratch;/&release;/&name;/detsim/out</outdir>
-      <logdir>&scratch;/&release;/&name;/detsim/log</logdir>
-      <workdir>&resilient;/&release;/&name;/detsim/work</workdir>
-      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/detsim</bookdir> 
-
-      <datatier>detector-simulated</datatier>
-      <numjobs>2000</numjobs>
-      <maxfilesperjob>1</maxfilesperjob>
-      <memory>4000</memory>
-      <disk>40GB</disk>
-      <jobsub>--expected-lifetime=12h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
-      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
-      
-    </stage>
-
-
 
     <stage name="reco1">
     
       <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_31dec_detsim_assok</inputdef> <!--check inputdef-->
+      <fcl>wirecell_detsim_overlay_numi_uboone.fcl</fcl> 
+      <fcl>standard_overlay_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_stage1a.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_stage1b.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage1c.fcl</fcl>

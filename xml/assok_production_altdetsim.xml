@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+
+<!DOCTYPE project [
+<!ENTITY release2 "v08_00_00_13k">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "taniuchi">
+<!ENTITY name "assok_production_numi_fhc_run1_detvar_altdetsim">
+<!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
+<!ENTITY app "/uboone/app/users/taniuchi"> 
+<!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
+<!ENTITY resilient "/pnfs/uboone/resilient/users/taniuchi">
+<!ENTITY data "/uboone/data/users/taniuchi">
+]>
+
+
+<job>
+  
+  <project name="&name;">
+    
+    <!-- Project size -->
+    <numevents>-1</numevents>
+    
+    <!-- Operating System -->
+    <os>SL7</os>
+    
+    <!-- Group -->
+    <group>uboone</group>
+    
+    <!-- Batch resources -->
+    <resource>DEDICATED,OPPORTUNISTIC</resource>
+    
+    <!-- Larsoft information -->
+    <larsoft>
+      <tag>&release2;</tag>
+      <qual>e17:prof</qual>
+      <!--<local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/Kaon_v08_00_00_51.tar</local>--> 
+    </larsoft>
+   
+    <version>prod_&release2;</version>
+    <check>1</check>
+    <copy>1</copy>
+
+
+    <stage name="altdetsim_sce">
+      
+      <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec_g4_assok</inputdef> <!--need g4 input-->
+      <fcl>wirecell_reg4_SCE_DataDrivenVar.fcl</fcl>
+      
+      <outdir>&scratch;/&release2;/&name;/altdetsim_sce/out</outdir>
+      <logdir>&scratch;/&release2;/&name;/altdetsim_sce/log</logdir>
+      <workdir>&resilient;/&release2;/&name;/altdetsim_sce/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/altdetsim_sce</bookdir>
+      <datatier>simulated</datatier>
+      <numjobs>2000</numjobs>
+      <maxfilesperjob>1</maxfilesperjob>
+      <memory>4000</memory>
+      <disk>40GB</disk>
+      <jobsub>--expected-lifetime=24h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
+      <jobsub_start>--expected-lifetime=short --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      
+    </stage>
+
+
+    <stage name="altdetsim_recomb">
+      
+      <inputdef>taniuchi_make_kaon_events_numi_fhc_run1_assok_overlay_test_26dec_g4_assok</inputdef>
+      <fcl>wirecell_reg4_recombination_2.fcl</fcl>
+      
+      <outdir>&scratch;/&release2;/&name;/altdetsim_recomb/out</outdir>
+      <logdir>&scratch;/&release2;/&name;/altdetsim_recomb/log</logdir>
+      <workdir>&resilient;/&release2;/&name;/altdetsim_recomb/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/altdetsim_recomb</bookdir>
+      <datatier>simulated</datatier>
+      <numjobs>3000</numjobs>
+      <maxfilesperjob>1</maxfilesperjob>
+      <memory>4000</memory>
+      <disk>40GB</disk>
+      <jobsub>--expected-lifetime=24h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
+      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      
+    </stage>
+
+
+    <!-- file type -->
+    <filetype>&file_type;</filetype>
+    
+    <!-- run type -->
+    <runtype>&run_type;</runtype>
+    
+  </project>
+        
+</job>
+
