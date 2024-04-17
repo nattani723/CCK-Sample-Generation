@@ -37,7 +37,7 @@
     <larsoft>
       <tag>&release;</tag>
       <qual>e17:prof</qual>
-      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/Kaon_v08_00_00_51.tar</local> 
+      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/prod_Kaon_v08_00_00_51.tar</local> 
     </larsoft>
    
     <version>prod_&release;</version>
@@ -48,7 +48,7 @@
     <inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>
     
     <stage name="gen">
-      <fcl>/exp/uboone/app/users/taniuchi/KaonProduction/MCSample/xml/prodgenie_numi_cck_asso_fhc.fcl</fcl>
+      <fcl>/exp/uboone/app/users/taniuchi/KaonProduction/xml/prodgenie_numi_cck_asso_fhc.fcl</fcl>
       
       <outdir>&scratch;/&release;/&name;/gen/out</outdir>
       <logdir>&scratch;/&release;/&name;/gen/log</logdir>

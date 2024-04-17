@@ -9,7 +9,7 @@
 <!ENTITY user "taniuchi">
 <!ENTITY name "assok_production_numi_fhc_run1_main_reco">
 <!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
-<!ENTITY app "/exp/uboone/app/users/taniuchi"> 
+<!ENTITY app "/exp/uboone/app/users/taniuchi">
 <!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
 <!ENTITY resilient "/pnfs/uboone/resilient/users/taniuchi"> 
 <!ENTITY data "/exp/uboone/data/users/taniuchi">
