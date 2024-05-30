@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+
+<!DOCTYPE project [
+<!ENTITY release "v08_00_00_51">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "taniuchi">
+<!ENTITY name "reco_assocK_events_nocosmic_numi_run1_fhc_forresample_test">
+<!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
+<!ENTITY app "/exp/uboone/app/users/taniuchi">
+<!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
+<!ENTITY resilient "/pnfs/uboone/resilient/users/taniuchi"> 
+<!ENTITY data "/exp/uboone/data/users/taniuchi">
+]>
+
+
+<job>
+  
+  <project name="&name;">
+    
+    <!-- Project size -->
+    <numevents>-1</numevents>
+    
+    <!-- Operating System -->
+    <os>SL7</os>
+    
+    <!-- Group -->
+    <group>uboone</group>
+    
+    <!-- Batch resources -->
+    <resource>DEDICATED,OPPORTUNISTIC</resource>
+    
+    <!-- Larsoft information -->
+    <larsoft>
+      <tag>&release;</tag>
+      <qual>e17:prof</qual>
+      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonCode1.tar</local> 
+    </larsoft>
+   
+    <version>prod_&release;</version>
+    <check>0</check>
+    <copy>0</copy>
+
+    <stage name="reco2">
+      
+      <fcl>wirecell_detsim_numi_uboone.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_stage1.fcl</fcl>
+      <fcl>reco_uboone_mcc9_8_driver_stage2_numi_fullMC.fcl</fcl>
+      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_numi.fcl</fcl>-->
+      
+      <outdir>&scratch;/&release;/&name;/reco2/out</outdir>
+      <logdir>&scratch;/&release;/&name;/reco2/log</logdir>
+      <workdir>&resilient;/&release;/&name;/reco2/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/reco2</bookdir>
+      <maxfilesperjob>10</maxfilesperjob>
+      <numjobs>325</numjobs> <!--200  -->
+      <datatier>reconstructed</datatier>
+      <datafiletypes>root,pndr,local</datafiletypes>
+      <memory>3500</memory>
+      <schema>gsiftp</schema>
+      <disk>35GB</disk>
+      <jobsub>--expected-lifetime=24h -e IFDH_CP_UNLINK_ON_ERROR=1</jobsub>
+      <jobsub_start>--expected-lifetime=short</jobsub_start>
+    </stage>
+
+    <!-- file type -->
+    <filetype>&file_type;</filetype>
+    
+    <!-- run type -->
+    <runtype>&run_type;</runtype>
+    
+  </project>
+    
+
+</job>
+

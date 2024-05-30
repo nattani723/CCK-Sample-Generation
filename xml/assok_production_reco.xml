@@ -7,7 +7,7 @@
 <!ENTITY file_type "mc">
 <!ENTITY run_type "physics">
 <!ENTITY user "taniuchi">
-<!ENTITY name "assok_production_numi_fhc_run1_main_reco">
+<!ENTITY name "reco_assocK_events_numi_run1_fhc_forresample_test">
 <!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
 <!ENTITY app "/exp/uboone/app/users/taniuchi">
 <!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
@@ -37,12 +37,12 @@
     <larsoft>
       <tag>&release;</tag>
       <qual>e17:prof</qual>
-      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/Kaon_v08_00_00_51.tar</local> 
+      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonCode1.tar</local> 
     </larsoft>
    
     <version>prod_&release;</version>
-    <check>1</check>
-    <copy>1</copy>
+    <check>0</check>
+    <copy>0</copy>
 
     
     <stage name="g4">

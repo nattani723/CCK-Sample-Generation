@@ -7,7 +7,7 @@
 <!ENTITY file_type "mc">
 <!ENTITY run_type "physics">
 <!ENTITY user "taniuchi">
-<!ENTITY name "assok_production_numi_fhc_run1_gen_test">
+<!ENTITY name "genie_gen_assocK_events_numi_run1_fhc_forresample_test">
 <!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
 <!ENTITY app "/exp/uboone/app/users/taniuchi"> 
 <!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
@@ -31,13 +31,13 @@
     <group>uboone</group>
     
     <!-- Batch resources -->
-    <resource>DEDICATED,OPPORTUNISTIC</resource>
+    <resource>DEDICATED,OPPORTUNISTIC,OFFSITE</resource>
     
     <!-- Larsoft information -->
     <larsoft>
       <tag>&release;</tag>
       <qual>e17:prof</qual>
-      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/prod_Kaon_v08_00_00_51.tar</local> 
+      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonCode1.tar</local>
     </larsoft>
    
     <version>prod_&release;</version>
@@ -45,10 +45,11 @@
     <copy>0</copy>
 
     
-    <inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>
+    <!--<inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>-->
     
     <stage name="gen">
-      <fcl>/exp/uboone/app/users/taniuchi/KaonProduction/xml/prodgenie_numi_cck_asso_fhc.fcl</fcl>
+      <fcl>/exp/uboone/app/users/taniuchi/KaonProduction/xml/prodgenie_numi_cck_asso_fhc_nofilter.fcl</fcl>
+      <fcl>/pnfs/uboone/resilient/users/taniuchi/KaonAnalyzer/fhicl/run_KaonFilter.fcl</fcl>
       
       <outdir>&scratch;/&release;/&name;/gen/out</outdir>
       <logdir>&scratch;/&release;/&name;/gen/log</logdir>
@@ -56,17 +57,18 @@
       <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/gen</bookdir>
       
       <dirlevels>1</dirlevels>
-      <dirsize>10</dirsize>
-      <datatier>generated</datatier>
+      <dirsize>100</dirsize>
+      <datatier>root-tuple</datatier>
+      <datafiletypes>root</datafiletypes>
+      <!--<datatier>generated</datatier>-->
       <prestart>1</prestart>
       <filelistdef>1</filelistdef>
       <maxfilesperjob>1</maxfilesperjob>
  
       <numjobs>20</numjobs>
       <memory>4000</memory>
-      <disk>40GB</disk>
-      <jobsub>--expected-lifetime=48h --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)&amp;&amp;(TARGET.HAS_CVMFS_larsoft_opensciencegrid_org==true)'</jobsub>
-      <jobsub_start>--expected-lifetime=long --append_condor_requirements='(TARGET.HAS_CVMFS_uboone_opensciencegrid_org==true)'</jobsub_start>
+      <disk>20GB</disk>
+      <jobsub>--expected-lifetime=12h </jobsub>
       
     </stage>
         
