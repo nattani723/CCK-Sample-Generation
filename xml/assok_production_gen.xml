@@ -41,7 +41,7 @@
     </larsoft>
    
     <version>prod_&release;</version>
-    <check>1</check>
+    <check>0</check>
     <copy>0</copy>
 
     
@@ -54,7 +54,9 @@
       <logdir>&scratch;/&release;/&name;/gen/log</logdir>
       <workdir>&resilient;/&release;/&name;/gen/work</workdir>
       <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/gen</bookdir>
-
+      
+      <dirlevels>1</dirlevels>
+      <dirsize>10</dirsize>
       <datatier>generated</datatier>
       <prestart>1</prestart>
       <filelistdef>1</filelistdef>
