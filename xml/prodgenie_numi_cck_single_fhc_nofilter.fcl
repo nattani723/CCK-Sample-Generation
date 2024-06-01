@@ -1,4 +1,4 @@
-#include "prodgenie_common_uboone_Filtered.fcl"
+#include "prodgenie_common_uboone.fcl"
 process_name: GenieGenFiltered
 
 outputs.out1.fileName: "prodgenie_numi_nu_filtered_CCSingleKplus_uboone_%tc_gen.root"
@@ -19,8 +19,3 @@ physics.producers.generator.GHepPrintLevel:     10
 physics.producers.generator.EventGeneratorList: "SingleKaon"
 physics.producers.generator.GXMLPATH:           "/pnfs/uboone/resilient/users/taniuchi/spline-SK"
 physics.producers.generator.XSecTable:          "single_kaon_uboone_splines.xml"
-physics.filters.finalstatefilter.IsVerbose:     false
-physics.filters.finalstatefilter.isInclusive:   true
-physics.filters.finalstatefilter.PDG:           [13, 321]
-physics.filters.finalstatefilter.PDGCount:      [1,1]
-physics.filters.finalstatefilter.PDGCountExclusivity: [true, true]

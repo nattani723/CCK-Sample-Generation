@@ -1,4 +1,4 @@
-#include "prodgenie_common_uboone_Filtered.fcl"
+#include "prodgenie_common_uboone.fcl"
 process_name: GenieGenFiltered
 
 outputs.out1.fileName: "prodgenie_numi_nu_filtered_CCAssoKplus_uboone_%tc_gen.root"
@@ -17,5 +17,3 @@ physics.producers.generator.FluxSearchPaths:    "/cvmfs/uboone.osgstorage.org/st
 physics.producers.generator.FluxFiles:          ["g4numiv6_*.root"]
 physics.producers.generator.DetectorLocation:   "microboone-numi-v2"
 physics.producers.generator.GHepPrintLevel:     10
-physics.filters.finalstatefilter.IsVerbose:     false
-physics.filters.finalstatefilter.isInclusive:   true

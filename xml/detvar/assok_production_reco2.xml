@@ -46,7 +46,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>-->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
 
       <outdir>&scratch;/&release;/&name;/reco2_CV/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_CV/log</logdir>
@@ -77,7 +77,6 @@
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
       <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>-->
 
       <outdir>&scratch;/&release;/&name;/reco2_SCE/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_SCE/log</logdir>
@@ -106,7 +105,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>-->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
 
       <outdir>&scratch;/&release;/&name;/reco2_Recomb/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_Recomb/log</logdir>
@@ -136,7 +135,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>-->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
 
       <outdir>&scratch;/&release;/&name;/reco2_LYDown/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_LYDown/log</logdir>
@@ -165,7 +164,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>-->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
 
       <outdir>&scratch;/&release;/&name;/reco2_LYRayleigh/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_LYRayleigh/log</logdir>
@@ -195,7 +194,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_stage2.fcl</fcl>
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>-->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi.fcl</fcl>
       
       <outdir>&scratch;/&release;/&name;/reco2_LYAttenuation/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_LYAttenuation/log</logdir>
@@ -226,7 +225,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl> 
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>-->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>
 
       <outdir>&scratch;/&release;/&name;/reco2_WireModX/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_WireModX/log</logdir>
@@ -258,7 +257,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl> 
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>-->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>
 
       <outdir>&scratch;/&release;/&name;/reco2_WireModYZ/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_WireModYZ/log</logdir>
@@ -290,7 +289,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl> 
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl>
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>-->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>
 
       <outdir>&scratch;/&release;/&name;/reco2_WireModThetaXZ/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_WireModThetaXZ/log</logdir>
@@ -321,7 +320,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl>
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl> -->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>
 
       <outdir>&scratch;/&release;/&name;/reco2_WireModThetaYZ/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_WireModThetaYZ/log</logdir>
@@ -352,7 +351,7 @@
       <fcl>standard_overlay_optical_numi_uboone.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_overlay_numi_optical.fcl</fcl>
       <fcl>reco_uboone_mcc9_8_driver_numi_overlay_wiremod_stage2.fcl</fcl>
-      <!--<fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl> -->
+      <fcl>reco_uboone_data_mcc9_1_8_driver_poststage2_filters_Overlay_numi_wiremod.fcl</fcl>
 
       <outdir>&scratch;/&release;/&name;/reco2_WireModdEdX/out</outdir>
       <logdir>&scratch;/&release;/&name;/reco2_WireModdEdX/log</logdir>

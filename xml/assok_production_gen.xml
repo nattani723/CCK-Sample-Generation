@@ -67,8 +67,8 @@
  
       <numjobs>20</numjobs>
       <memory>4000</memory>
-      <disk>20GB</disk>
-      <jobsub>--expected-lifetime=12h </jobsub>
+      <disk>40GB</disk>
+      <jobsub>--expected-lifetime=48h </jobsub>
       
     </stage>
         
