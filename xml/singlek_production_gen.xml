@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<!-- Production Project -->
+
+<!DOCTYPE project [
+<!ENTITY release "v08_00_00_51">
+<!ENTITY file_type "mc">
+<!ENTITY run_type "physics">
+<!ENTITY user "taniuchi">
+<!ENTITY name "genie_gen_singleK_events_numi_run1_fhc_forresample_mini">
+<!ENTITY scratch "/pnfs/uboone/scratch/users/taniuchi">
+<!ENTITY app "/exp/uboone/app/users/taniuchi"> 
+<!ENTITY persistent "/pnfs/uboone/persistent/users/taniuchi">
+<!ENTITY resilient "/pnfs/uboone/resilient/users/taniuchi"> 
+<!ENTITY data "/exp/uboone/data/users/taniuchi">
+]>
+
+
+<job>
+  
+  <project name="&name;">
+    
+    <!-- Project size -->
+    <numevents>10000</numevents>
+    <!--<numevents>10000000</numevents>-->
+    
+    <!-- Operating System -->
+    <os>SL7</os>
+    
+    <!-- Group -->
+    <group>uboone</group>
+    
+    <!-- Batch resources -->
+    <resource>DEDICATED,OPPORTUNISTIC,OFFSITE</resource>
+    
+    <!-- Larsoft information -->
+    <larsoft>
+      <tag>&release;</tag>
+      <qual>e17:prof</qual>
+      <local>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/tarballs/KaonCode3.tar</local>
+    </larsoft>
+   
+    <version>prod_&release;</version>
+    <check>0</check>
+    <copy>0</copy>
+
+    
+    <!--<inputdef>prod_extunbiased_swizzle_inclusive_v3_goodruns_mcc9_run1_high_lifetime</inputdef>-->
+    
+    <stage name="gen">
+      <fcl>/pnfs/uboone/resilient/users/taniuchi/KaonProduction/fhicl/prodgenie_numi_cck_single_fhc_nofilter.fcl</fcl>
+      <!--<fcl>/pnfs/uboone/resilient/users/taniuchi/KaonAnalyzer/fhicl/run_KaonFilter.fcl</fcl>-->
+      
+      <outdir>&scratch;/&release;/&name;/gen/out</outdir>
+      <logdir>&scratch;/&release;/&name;/gen/log</logdir>
+      <workdir>&resilient;/&release;/&name;/gen/work</workdir>
+      <bookdir>/exp/uboone/data/users/&user;/book/MCC9/&name;/assok_sample/gen</bookdir>
+      
+      <!--<dirlevels>1</dirlevels>-->
+      <!--<dirsize>100</dirsize>-->
+      <datatier>root-tuple</datatier>
+      <datafiletypes>root</datafiletypes>
+      <!--<datatier>generated</datatier>-->
+      <prestart>1</prestart>
+      <filelistdef>1</filelistdef>
+      <maxfilesperjob>1</maxfilesperjob>
+ 
+      <numjobs>20</numjobs>
+      <memory>4000</memory>
+      <disk>30GB</disk>
+      <jobsub>--expected-lifetime=48h </jobsub>
+      
+    </stage>
+        
+    <!-- file type -->
+    <filetype>&file_type;</filetype>
+    
+    <!-- run type -->
+    <runtype>&run_type;</runtype>
+    
+  </project>
+    
+
+</job>
+
